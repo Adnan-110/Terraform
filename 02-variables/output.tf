@@ -49,5 +49,5 @@
 
 #   Printing Dictionary type Variable
     output "Dunki-Detail"{
-        value = "The Dunki Film is Going to Relase on ${var.Detail{Release}}. The Male Lead of the Film is ${var.Detail{actor}} and The Female Lead of the Film is ${var.Detail{actress}} "
+        value = "The Dunki Film is Going to Relase on ${var.Detail["Release"]}. The Male Lead of the Film is ${var.Detail["actor"]} and The Female Lead of the Film is ${var.Detail["actress"]} "
     }
