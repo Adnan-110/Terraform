@@ -27,7 +27,7 @@
         default = [
             "SRK" ,
             "Tapsee" ,
-            21st_Decembet_2023 ,
+            21 ,
             true
         ]
     }
