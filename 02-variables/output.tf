@@ -13,7 +13,7 @@
     }
 
     variable "Numerical" {
-        value = 1000
+        default = 1000
     }
 
     output Numerical-output{
