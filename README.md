@@ -187,3 +187,54 @@ Based on the type of change that you make, terraform is going to act accordingly
     A backend defines where Terraform stores its state data files.
 
 ```
+
+
+### Modules Sources In Terraform !!!
+
+```
+    1) S3 Bucket
+    2) Github                       ( Keeping Modules Remote is quite mature thing and we would like to use it more in our training )
+    3) Local Modules
+    4) Terraform Registry Modules
+```
+
+
+### How can we pass the outputs from One Module to Other In terraform 
+
+```
+    In Terraform, you cannot pass the outputs from one module to another module directly. It should be only through ROOT Module Only.
+
+```
+
+
+### Provisioners In Terraform
+
+    Provisioners in terraform help's us to execute some either on Local Instance from where you're running terraform or on the top of the resources created by terraform.
+
+     It's is a mechanism that allows execution of scripts or commands on a resource during or after its creation, enabling customization and configuration. Provisioners are often used for tasks like software installation, configuration management, or any post-resource creation actions.
+
+
+### Types Of Provsioners In Terraform :  
+
+    Based on where you execute the task, we have 3 types of provisioners : 
+
+```
+    1) Local Provisoner           [ This execute tasks on the top of the local machine where you're running  terraform ]
+    2) Remote Provisioner         [ This executed tasks on the top of the remote machine or the created infra by terraform ]
+    3) File Provisioner           [ This is used to copy the file from local machine to the created resouce ]
+```
+
+
+
+### Provisioners Placement!!!
+
+```
+    If you place a provisioner with in the resource, if the provisioner fails because of any reason, terraform consider the entire resource creation itself as a failure and marks the created object as tained that means on next Terraform Apply Object will be destroyed and re-creaated
+
+    That's why it's always recommended to keep the provisoners outside the Resource.
+
+    But provisioners should always be kept with in the resoruce only!!!!
+
+    That's why there is a null resource, which creates nothing and that's main intention is to run provisoners.
+    
+```
