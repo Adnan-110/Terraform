@@ -12,3 +12,11 @@
         value = "The Main Lead of Dunki is ${var.Dunki}"
     }
 
+    variable "Numerical" {
+        value = 1000
+    }
+
+    output Numerical-output{
+        value = var.Numerical
+    }
+
