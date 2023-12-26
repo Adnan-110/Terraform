@@ -37,3 +37,17 @@
     output "Dunki-Details" {
         value = "The Dunki Film is Going to Release on ${var.Details[2]}. The Male Lead of the Film is ${var.Details[0]} and The Female Lead of the Film is ${var.Details[1]} "
     }       
+
+#   Declaring a map type variable
+    variable "Detail"{
+        default = {
+            actor = "SRK"
+            actress = "Tapsee"
+            Release = 21
+        }
+    }
+
+#   Printing Dictionary type Variable
+    output "Dunki-Detail"{
+        value = "The Dunki Film is Going to Relase on ${var.Detail{Release}}. The Male Lead of the Film is ${var.Detail{actor}} and The Female Lead of the Film is ${var.Detail{actress}} "
+    }
