@@ -61,3 +61,10 @@ variable "Director" {}
 output "Dunki-Director" {
     value = var.Director
 }
+
+variable "Producer" {}
+
+output "Dunki-Producer" {
+    value = var.Producer
+}
+
