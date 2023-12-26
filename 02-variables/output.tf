@@ -51,3 +51,13 @@
     output "Dunki-Detail"{
         value = "The Dunki Film is Going to Relase on ${var.Detail["Release"]}. The Male Lead of the Film is ${var.Detail["actor"]} and The Female Lead of the Film is ${var.Detail["actress"]} "
     }
+
+#  In Reality, We will write the code very generic and values would be fetched from from external file based  on the environment.
+#  We can declare the varaibles in a variables file and that would be picked-up by terraform and the variables file should always end with *.tfvars.check 
+#  terraform.tfvars is the default file that would be picked-up 
+
+variable "Director" {}
+
+output "Dunki-Director" {
+    value = var.Director
+}
