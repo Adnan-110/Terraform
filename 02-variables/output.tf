@@ -8,5 +8,7 @@
 
 #  Printing a variable with outputs 
     output "Dunki-Cast" {
-        value = var.Dunki
+        # value = var.Dunki
+        value = "The Main Lead of Dunki is ${var.Dunki}"
     }
+
