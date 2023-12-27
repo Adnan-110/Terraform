@@ -1,19 +1,19 @@
-resource "aws_instance" "web" {
-  ami           = "ami-0f75a13ad2e340a58"           #argument
-  instance_type = "t2.micro"
+# resource "aws_instance" "web" {
+#   ami           = "ami-0f75a13ad2e340a58"           #argument
+#   instance_type = "t2.micro"
 
-  tags = {
-    Name = "Demo1"
-  }
-}
+#   tags = {
+#     Name = "Demo1"
+#   }
+# }
 
-output "instance_dns" {
-  value = aws_instance.web.private_dns              #attribute
-}
+# output "instance_dns" {
+#   value = aws_instance.web.private_dns              #attribute
+# }
 
-output "instance_arn" {
-  value = aws_instance.web.arn                      #attribute
-}
+# output "instance_arn" {
+#   value = aws_instance.web.arn                      #attribute
+# }
 
 
 resource "aws_security_group" "allow_tls" {
