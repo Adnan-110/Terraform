@@ -1,4 +1,4 @@
- output "instance_dns" {
+output "instance_dns" {
     value         = aws_instance.web.private_dns              #attribute
   }
 
