@@ -11,7 +11,7 @@ module "ec2" {
 
 # Calls securityGroup child module
 module "securityGroup" {
-    source = "../03-ec2_instance"
+    source = "./securityGroup"
 }
 
 output "public_ip" {
