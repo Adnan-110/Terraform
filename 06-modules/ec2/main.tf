@@ -4,7 +4,7 @@ resource "aws_instance" "app" {
     vpc_security_group_ids = [var.securityGroup]  # Using the Variable
 
     tags = {
-      name = "EC2-From_Modules"
+      Name = "EC2-From_Modules"
     }
 }
 
