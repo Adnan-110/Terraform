@@ -1,3 +1,4 @@
+# Root Module
 provider "aws" {}
 
 terraform {
@@ -8,7 +9,14 @@ terraform {
   }
 }
 
+# Calls Child Modules
 module "local-module" {
     source = "./local"
   
+}
+
+# This is how we fetch the values from a backend Module.
+# module.childModuleName.outputNameDeclaredInTheChildModule
+output "instance_ip" {
+  value = module.local-module.instance_ip
 }
