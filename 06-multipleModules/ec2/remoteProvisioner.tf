@@ -10,7 +10,7 @@ resource "null_resource" "kuchToHai" {
 
   provisioner "remote-exec" {
     inline = [ 
-        "ansible-pull -U https://github.com/Adnan-110/ansible.git -e ENV=dev -e COMPONENT=mongodb roboshop.yaml"
+        "ansible-pull -U https://github.com/Adnan-110/ansible.git -e ENVIRONMENT=dev -e COMPONENT=mongodb roboshop.yaml"
      ]
   }
 }
