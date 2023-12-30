@@ -1,0 +1,21 @@
+resource "null_resource" "kuchToHai" {
+  # This make sure that null resource will ony be executed post the creation of the aws_instance.app only 
+  depends_on = [ aws_instance.app ]
+  connection {
+    type        = "ssh"
+    user        = "centos"
+    password    = "DevOps321"
+    host        = aws_instance.app.private_ip
+  }
+
+  provisioner "remote-exec" {
+    inline = [ 
+        "ansible-pull -U https://github.com/Adnan-110/ansible.git -e ENV=dev -e COMPONENT=mongodb roboshop.yaml"
+     ]
+  }
+}
+
+# 1) Creates Resource 
+# 2) Null provisioner authenticates/establishes connection to the newly created resource
+# 3) Then executes tasks mentioned in the remote_exec block
+
