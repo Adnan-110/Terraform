@@ -1,4 +1,4 @@
-# Terraform
+# terraform--basics
 
 This repository contains all the basics that are needed to kickStart terraform-learning.
 
@@ -222,6 +222,7 @@ Based on the type of change that you make, terraform is going to act accordingly
     1) Local Provisoner           [ This execute tasks on the top of the local machine where you're running  terraform ]
     2) Remote Provisioner         [ This executed tasks on the top of the remote machine or the created infra by terraform ]
     3) File Provisioner           [ This is used to copy the file from local machine to the created resouce ]
+    4) Connection Provisioner
 ```
 
 
@@ -236,5 +237,87 @@ Based on the type of change that you make, terraform is going to act accordingly
     But provisioners should always be kept with in the resoruce only!!!!
 
     That's why there is a null resource, which creates nothing and that's main intention is to run provisoners.
-    
+
 ```
+
+
+### What are the points to be considered while designing and creating a network ?
+
+```
+    1) Understand the business need of the network
+    2) Analyze the number of ip address needed.
+    3) Understand how many subnetsa are needed.
+    4) Conclude how many subnets need access to internet and how many don't
+    5) Select a CIDR Range either Class-A or B ( 10 or 172 series )
+    6) Ensure the selected CIDR Range is not conflicing with any of your existing AWS Accounts in your project.
+
+```
+
+### For our roboshop project, how many Ip's do I need ?
+
+```
+    DEV  :   256   :   10.0.0.0/24 
+    PROD :  1024   :   10.1.0.0/22
+
+    In Dev VPC, let's provision 2 subnets in Public Subnet in us-east-1a, us-east-1b  and 2 Private Subnets in us-east-1a, us-east-1b keeping the high availability in mind.
+
+    DEV VPC CIDR   : 10.0.0.0/24 
+        public-subnet-cidr  : 10.0.0.0/26   , 10.0.0.64/26
+        private-subnet-cidr : 10.0.0.128/26	, 10.0.0.192/26	
+
+    PROD VPC CIDR  : 10.1.0.0/22
+        public-subnet-cidr  : 10.1.0.0/24 , 10.1.1.0/24
+        private-subnet-cidr : 10.1.2.0/24 , 10.1.3.0/24
+
+```
+
+
+### What is Public and Private Subnets ?
+
+```
+    Both of them are pieces from a network. But the major difference is Public IP Address. 
+    
+    In public subnets, all the machines that are launched will have a Public IP Address by default and can be accessed directly from the internet.
+
+    In private subnets, all the machines that are launched will only have a private IP Address and no Public IP Address ( that means we cannot connect to these machines from public network )
+
+```
+
+
+###  In our project, what all machines should be in private network .
+
+```
+    Apart from frontend, rest of all the components  [ backend, db's ] should be in Private Network Only
+
+```
+
+
+### How can I implement the network with a public and a private network ?
+
+```
+    1) Create a VPC with default tenancy and mention the CIDR as 10.2.0.0/24
+    2) Create subnets one in us-east-1a and us-east-1b with subnets as 10.2.0.0/25 and 10.2.0.128/25 respectively
+    3) Ensure you mention one of the subnet as public and the other as private.
+    4) Ensure you enable "Enable auto-assign public IPv4 address" on the public-subnet and this ensures the Public IP Address to the instances launched in this subnet. Don't do the same for Private-Subnet.
+    5) Create a Internet Gateway and attach it to the roboshop-vpc ( you can attach only one IGW per VPC )
+    6) Create a Public-Route Table and associate with the public-subnet and with a route of 0.0.0.0/0 with IGW
+    7) Create a Private-Route Table and associate with private-subnet and with a default route.
+    8) Now you should be able to SSH to the machines launched in the public-subnet
+
+    9) Also public-machines should be able to talk to the internet. But not the private machines.
+
+    10) All the machine should have access to internet and why ?  ( If a machine needs to download a package, how do we update packages )
+
+    11) We need to desing the network in such a way that, No one should be able to access the private machines from the internet. But, if the private machines want to talk, they should be able to talk to the internet.
+
+    12) But if you try to SSH from your workStation to any of the Public or private machines with their Privat IP, it won't as they are in 2 different networks.
+
+    13) How can we enable private communication between 2 different VPC's ? [ Using VPC Peering ] 
+
+    14) Create VPC Peering as demonstrated between 2 different VPC's
+
+    15) Update the route tables of default-rt, public-rt and private-rt with respective CIDR range, then private communication would be enabled between the 2 VPC's.
+
+
+```
+
