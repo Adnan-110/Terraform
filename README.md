@@ -146,7 +146,7 @@ Based on the type of change that you make, terraform is going to act accordingly
 ```
 
 
-### Datasource 
+### Datasource
 
 ```
     Datasource in terraform helps you fetch the information of the already existing resources!!!!
