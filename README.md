@@ -321,3 +321,84 @@ Based on the type of change that you make, terraform is going to act accordingly
 
 ```
 
+
+
+
+### What is the best way to create Infrastrucure with Terraform ??
+
+## Is it good to to create the entire infrastrcure in a single go and with a single repository ?
+
+```
+ This in turns creates a single statefile for the entire Infrastructure.
+
+ This also means if you just want to change a tag for a EC2 Instance, it has to refresh and check the entire infra and eventually the time for even small chanegs will take lot of time and sometime you would see catastrohic plan events.
+
+ So, it's not at all recommended to keep the entire infrastrucure in a single go.
+
+ It's recommented to keep and prepare all the components individually so that the staefiles would be different and in turn management and latency would be easy.
+
+```
+
+
+### What Terrafile does ?
+
+```
+Terrafile just clones the backend module from the mentioned branch and will keep the code local.
+
+Remote module will be downloaded and will be kept locally available and ensure you change the source in the main to local.
+```
+
+
+### Can Teraform Manage the resources that we were not created by Terraform ???
+```
+    Partially YES!
+
+    Some resources in AWS can be managed by terraform even though it was created manually.
+
+        Ex : You want to add a ROUTE to default route-table in the VPC.
+```
+
+
+
+### What are needs to be created to make project 100% provisiond with terraform only ?
+
+```
+    1) Provision VPC 
+    2) Provision the Databases ( Mongodb, MySQL, Redis, RabbitMQ )
+    3) Provision the Applicaitons Instances
+```
+
+### Managed Services that we use for DB's on AWS ?
+
+```
+        MongoDB     ---->   Document DB             ( NodeJS Components Needs some code change )
+        MySQL       ---->   RDS
+        Redis       ---->   Elastic Cache
+        RabbitMQ    ---->   Amazon MQ               ( Out applicaiton won't support Amazon-MQ, we will fall back to RabbitMQ on EC2 only)
+```
+
+
+### With Terraform, how are we going to handle allthe 4 DB's ?
+
+```
+    tf-module-databases
+    terraform-databases
+
+```
+
+
+### How one resource in AWS can read the information from another terraform remote statefile ???
+
+```
+    This usecase usually comes up when you modularize the infrastructure and create them in different statefiles.
+
+    As a best practice, it's always recommended to keep things isolated and this gives you multiple statefiles and which in turn gives you
+    the opportunity to maintain multiple statefiles.
+
+    But how to stare the information between 2 different state files? 
+
+        1) Usually, whatever the information that we would like to share, we will mark them in the outputs.
+        2) Marking them as outputs will not only display the information but also registers that info on Statefile which further can be used by others to access that information
+
+    Now using Terraform Remote State Datasource, we can fetch the info/outputs from the intended statefile
+```
