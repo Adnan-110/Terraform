@@ -11,7 +11,7 @@ resource "null_resource" "kuchToHai" {
   provisioner "remote-exec" {
     inline = [ 
         "curl https://gitlab.com/thecloudcareers/opensource/-/raw/master/lab-tools/ansible/install.sh | sudo bash",
-        "ansible-pull -U https://github.com/Adnan-110/ansible.git -e ENVIRONMENT=dev -e COMPONENT=mongodb roboshop-pull.yaml"
+        "ansible-pull -U https://github.com/Adnan-110/ansible.git -e ENVIRONMENT=dev -e COMPONENT=mongodb roboshop-pull.yml"
      ]
   }
 }

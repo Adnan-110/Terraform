@@ -2,9 +2,7 @@
 
 This repository contains all the basics that are needed to kickStart terraform-learning.
 
-
-
-### what is terraform ?  Why we need it ? Why companies prefer terraform ? 
+### what is terraform ?  Why we need it ? Why companies prefer terraform ?
 
 ```
     Terraform is an open-source infrastructure as code (IaC) tool developed by HashiCorp. It allows users to define and provision infrastructure using a declarative configuration language. With Terraform, you can describe your desired infrastructure in code, and then use Terraform to create, modify, and manage that infrastructure in a consistent and automated way.
@@ -47,7 +45,6 @@ This repository contains all the basics that are needed to kickStart terraform-l
 
 ### What are + , -,  -/+ when dealing with terraform plan ?
 
-
 ```
     + (Plus): Indicates a resource that Terraform plans to create as part of the proposed changes. This means a new resource will be added to the infrastructure when you apply the plan.
 
@@ -62,26 +59,27 @@ This repository contains all the basics that are needed to kickStart terraform-l
 > Whenever your variable is enclosed in a set of strings or in between a sentence, then we to enslose them in strings and with bash notation.
 > Strings are supposed to be enclosed in double quotes whilst Numbers & Booleans don't need any type of quotes.
 
-
 # Varaible Precenden In Terraform
 
 In Terraform, variables play a crucial role in parameterizing your infrastructure code. Understanding the precedence of different variable sources helps you manage and prioritize configuration values effectively. Here's a brief overview of the Terraform variable precedence:
 
- ###   1) -var Command-Line Option:
+### 1) -var Command-Line Option
 
 ```
                 Highest precedence.
                 Values passed using the -var command-line option directly override any other variable sources.
                 Example: terraform apply -var="instance_count=3"
 ```
-###    2) -var-file Command-Line Option:
+
+### 2) -var-file Command-Line Option
 
 ```
                 Next in precedence after the -var command-line option.
                 Allows you to specify a file containing variable values.
                 Example: terraform apply -var-file="custom-vars.tfvars"
 ```
-###    3) terraform.auto.tfvars:
+
+### 3) terraform.auto.tfvars
 
 ```
                 Automatically loaded if present in the working directory.
@@ -89,7 +87,9 @@ In Terraform, variables play a crucial role in parameterizing your infrastructur
                 Useful for storing default values and environment-specific configurations.
                     Example: terraform.auto.tfvars
 ```
-####    4) terraform.tfvars:
+
+#### 4) terraform.tfvars
+
 ```
                 Similar to terraform.auto.tfvars but requires an explicit load using the -var-file command-line option.
                 Lower precedence compared to command-line options.
@@ -98,9 +98,7 @@ In Terraform, variables play a crucial role in parameterizing your infrastructur
                 Understanding this precedence allows you to manage your Terraform configurations flexibly, whether you're setting default values, using environment-specific overrides, or providing values dynamically through command-line options.
 ```
 
-
 # Attribure vs Argument In Terraform
-
 
 ### Arguments
 
@@ -110,14 +108,13 @@ In Terraform, variables play a crucial role in parameterizing your infrastructur
 
 ```
 
-### Attributes 
+### Attributes
 
 ```
     Attributes are the properties of the machine that woould be coming up post the creation of the resource.
 
         Ex : private_ip, instance_id
 ```
-
 
 ### What will happen when there is change in the code ? Is it going to destroy and create the infra or just updates the changes as per what's defined the code ????
 
@@ -133,7 +130,6 @@ Based on the type of change that you make, terraform is going to act accordingly
 
 ```
 
-
 ### What will happen if you change any of the properties of the instance manually that was provisioned with terraform ???
 
 ```
@@ -145,7 +141,6 @@ Based on the type of change that you make, terraform is going to act accordingly
 
 ```
 
-
 ### Datasource
 
 ```
@@ -154,8 +149,8 @@ Based on the type of change that you make, terraform is going to act accordingly
     These dataSources are also specific to the resources and you need to get the infomation from the terraform documentation.
 ```
 
-
 ### what is terraform state file ?
+
 ```
 
     The Terraform state file is a JSON-formatted file that keeps track of the resources managed by Terraform and their current state in the target infrastructure.
@@ -163,9 +158,7 @@ Based on the type of change that you make, terraform is going to act accordingly
     That also means storing the STATE File also needs some better strategy!!!
 ```
 
-
 ### What will happen if you lose the stateFile ?
-
 
 ```
     That can be referred as catastrophy and that's not at all acceptable.
@@ -188,8 +181,7 @@ Based on the type of change that you make, terraform is going to act accordingly
 
 ```
 
-
-### Modules Sources In Terraform !!!
+### Modules Sources In Terraform
 
 ```
     1) S3 Bucket
@@ -198,14 +190,12 @@ Based on the type of change that you make, terraform is going to act accordingly
     4) Terraform Registry Modules
 ```
 
-
-### How can we pass the outputs from One Module to Other In terraform 
+### How can we pass the outputs from One Module to Other In terraform
 
 ```
     In Terraform, you cannot pass the outputs from one module to another module directly. It should be only through ROOT Module Only.
 
 ```
-
 
 ### Provisioners In Terraform
 
@@ -213,8 +203,7 @@ Based on the type of change that you make, terraform is going to act accordingly
 
      It's is a mechanism that allows execution of scripts or commands on a resource during or after its creation, enabling customization and configuration. Provisioners are often used for tasks like software installation, configuration management, or any post-resource creation actions.
 
-
-### Types Of Provsioners In Terraform :  
+### Types Of Provsioners In Terraform  
 
     Based on where you execute the task, we have 3 types of provisioners : 
 
@@ -225,9 +214,7 @@ Based on the type of change that you make, terraform is going to act accordingly
     4) Connection Provisioner
 ```
 
-
-
-### Provisioners Placement!!!
+### Provisioners Placement
 
 ```
     If you place a provisioner with in the resource, if the provisioner fails because of any reason, terraform consider the entire resource creation itself as a failure and marks the created object as tained that means on next Terraform Apply Object will be destroyed and re-creaated
@@ -239,7 +226,6 @@ Based on the type of change that you make, terraform is going to act accordingly
     That's why there is a null resource, which creates nothing and that's main intention is to run provisoners.
 
 ```
-
 
 ### What are the points to be considered while designing and creating a network ?
 
@@ -263,14 +249,13 @@ Based on the type of change that you make, terraform is going to act accordingly
 
     DEV VPC CIDR   : 10.0.0.0/24 
         public-subnet-cidr  : 10.0.0.0/26   , 10.0.0.64/26
-        private-subnet-cidr : 10.0.0.128/26	, 10.0.0.192/26	
+        private-subnet-cidr : 10.0.0.128/26 , 10.0.0.192/26 
 
     PROD VPC CIDR  : 10.1.0.0/22
         public-subnet-cidr  : 10.1.0.0/24 , 10.1.1.0/24
         private-subnet-cidr : 10.1.2.0/24 , 10.1.3.0/24
 
 ```
-
 
 ### What is Public and Private Subnets ?
 
@@ -283,14 +268,12 @@ Based on the type of change that you make, terraform is going to act accordingly
 
 ```
 
-
-###  In our project, what all machines should be in private network .
+### In our project, what all machines should be in private network
 
 ```
     Apart from frontend, rest of all the components  [ backend, db's ] should be in Private Network Only
 
 ```
-
 
 ### How can I implement the network with a public and a private network ?
 
@@ -321,9 +304,6 @@ Based on the type of change that you make, terraform is going to act accordingly
 
 ```
 
-
-
-
 ### What is the best way to create Infrastrucure with Terraform ??
 
 ## Is it good to to create the entire infrastrcure in a single go and with a single repository ?
@@ -339,7 +319,6 @@ Based on the type of change that you make, terraform is going to act accordingly
 
 ```
 
-
 ### What Terrafile does ?
 
 ```
@@ -348,8 +327,8 @@ Terrafile just clones the backend module from the mentioned branch and will keep
 Remote module will be downloaded and will be kept locally available and ensure you change the source in the main to local.
 ```
 
-
 ### Can Teraform Manage the resources that we were not created by Terraform ???
+
 ```
     Partially YES!
 
@@ -357,8 +336,6 @@ Remote module will be downloaded and will be kept locally available and ensure y
 
         Ex : You want to add a ROUTE to default route-table in the VPC.
 ```
-
-
 
 ### What are needs to be created to make project 100% provisiond with terraform only ?
 
@@ -377,7 +354,6 @@ Remote module will be downloaded and will be kept locally available and ensure y
         RabbitMQ    ---->   Amazon MQ               ( Out applicaiton won't support Amazon-MQ, we will fall back to RabbitMQ on EC2 only)
 ```
 
-
 ### With Terraform, how are we going to handle allthe 4 DB's ?
 
 ```
@@ -385,7 +361,6 @@ Remote module will be downloaded and will be kept locally available and ensure y
     terraform-databases
 
 ```
-
 
 ### How one resource in AWS can read the information from another terraform remote statefile ???
 
