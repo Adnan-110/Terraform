@@ -77,7 +77,7 @@ output "environment_name" {
 # Example of the Usage of Shell Variable 
 
 # You can supply the value of the SHELL variable from command line using export
-# export IF_VAR_varName=value
+# export TF_VAR_varName=value
 
 variable "singer" {}
 
