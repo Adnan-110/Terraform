@@ -29,10 +29,10 @@ This repository contains all the basics that are needed to kickStart terraform-l
 
 ```
 
-### What are the 4 commands or options that you often use while dealing terrform ?
+### What are the 4 commands or options that you often use while dealing terraform ?
 
 ```
-    $ terraform init        : Initializes t erraform working directory by downloading the necessary providers and modules specified in the configuration.
+    $ terraform init        : Initializes terraform working directory by downloading the necessary providers and modules specified in the configuration.
 
     It prepares the directory to be used with Terraform, setting up the backend, plugins, and other necessary components for managing infrastructure as code.
 
@@ -56,7 +56,7 @@ This repository contains all the basics that are needed to kickStart terraform-l
 
 ### When enclose a variable in Quotes and when to use $ notation for a variable ???
 
-> Whenever your variable is enclosed in a set of strings or in between a sentence, then we to enslose them in strings and with bash notation.
+> Whenever your variable is enclosed in a set of strings or in between a sentence, then we to enclose them in strings and with bash notation.
 > Strings are supposed to be enclosed in double quotes whilst Numbers & Booleans don't need any type of quotes.
 
 # Varaible Precenden In Terraform
@@ -121,7 +121,7 @@ In Terraform, variables play a crucial role in parameterizing your infrastructur
 ```
 
 Ex : 
-    Did a change in the tag, terraform updated the name of the instane without any disruption
+    Did a change in the tag, terraform updated the name of the instance without any disruption
     Did a change of instance_type : Terraform shutdowns the machine and changed the instance and then started ( disruptive )
     Did a change of AMI, instance was recreated.
 
@@ -146,7 +146,7 @@ Based on the type of change that you make, terraform is going to act accordingly
 ```
     Datasource in terraform helps you fetch the information of the already existing resources!!!!
 
-    These dataSources are also specific to the resources and you need to get the infomation from the terraform documentation.
+    These dataSources are also specific to the resources and you need to get the information from the terraform documentation.
 ```
 
 ### what is terraform state file ?
